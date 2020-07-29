@@ -74,7 +74,7 @@ public class Main {
 			executor.shutdown();
 		}
 		else {
-			ExecutorService executor = Executors.newWorkStealingPool();
+			ExecutorService executor = Executors.newWorkStealingPool(Runtime.getRuntime().availableProcessors());
 			BigDecimal euler =  BigDecimal.ONE;
 		      
 			for (int i = 1; i< numberTerms+1; ++i) {
