@@ -15,7 +15,7 @@ public class EulerCalculatorTerm implements Callable<BigDecimal>{
 	@Override
 	public BigDecimal call() throws Exception {
 		BigInteger factorialResult = factorial(BigInteger.valueOf(numberOfTerm));
-	    System.out.println("Currently active threads are " + Thread.activeCount() + " " + numberOfTerm +" ");
+	    System.out.println("Currently active threads are " + Thread.activeCount());
 	    
 	    return BigDecimal.ONE.divide(new BigDecimal(factorialResult), 50, RoundingMode.HALF_EVEN);
 	}
