@@ -1,5 +1,6 @@
 package br.ufrn.imd;
 
+import java.math.BigDecimal;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -38,13 +39,14 @@ public class Main {
 		
 		if ( modeThreadPool.equals("F") ) {
 			ExecutorService executor = Executors.newFixedThreadPool(numberThreads);
-			Double euler =  (double) 1;
+			BigDecimal euler =  BigDecimal.ONE;
 		      
-			for (int i = 1; i< numberTerms; ++i) {
-			 	Callable<Double> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
-				Future<Double> termEuler = executor.submit(termEulerCalculator);
+			for (int i = 1; i< numberTerms+1; ++i) {
+			 	Callable<BigDecimal> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
+				Future<BigDecimal> termEuler = executor.submit(termEulerCalculator);
 				try {
-					euler += termEuler.get();
+					//euler += termEuler.get();
+					euler = euler.add(termEuler.get());
 				} catch (InterruptedException | ExecutionException e) {
 					e.printStackTrace();
 				}	
@@ -55,13 +57,14 @@ public class Main {
 		}
 		else if (modeThreadPool.equals("C") ) {
 			ExecutorService executor = Executors.newCachedThreadPool();
-			Double euler =  (double) 1;
+			BigDecimal euler =  BigDecimal.ONE;
 		      
-			for (int i = 1; i< numberTerms; ++i) {
-			 	Callable<Double> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
-				Future<Double> termEuler = executor.submit(termEulerCalculator);
+			for (int i = 1; i< numberTerms+1; ++i) {
+			 	Callable<BigDecimal> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
+				Future<BigDecimal> termEuler = executor.submit(termEulerCalculator);
 				try {
-					euler += termEuler.get();
+					//euler += termEuler.get();
+					euler = euler.add(termEuler.get());
 				} catch (InterruptedException | ExecutionException e) {
 					e.printStackTrace();
 				}
@@ -72,13 +75,14 @@ public class Main {
 		}
 		else {
 			ExecutorService executor = Executors.newWorkStealingPool();
-			Double euler =  (double) 1;
+			BigDecimal euler =  BigDecimal.ONE;
 		      
-			for (int i = 1; i< numberTerms; ++i) {
-			 	Callable<Double> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
-				Future<Double> termEuler = executor.submit(termEulerCalculator);
+			for (int i = 1; i< numberTerms+1; ++i) {
+			 	Callable<BigDecimal> termEulerCalculator = new EulerCalculatorTerm("Thread-" + i, i); 
+				Future<BigDecimal> termEuler = executor.submit(termEulerCalculator);
 				try {
-					euler += termEuler.get();
+					//euler += termEuler.get();
+					euler = euler.add(termEuler.get());
 			    } catch (InterruptedException | ExecutionException e) {
 					e.printStackTrace();
 				}
