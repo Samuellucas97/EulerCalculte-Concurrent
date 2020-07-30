@@ -1,5 +1,3 @@
-package euler;
-
 import java.math.BigDecimal;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
